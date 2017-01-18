@@ -35,13 +35,7 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'], function () {
 	Route::get('/all-posts', 'PostController@index')->name('admin-all-posts');
 	Route::get('/delete-post/{id}', 'PostController@destroy')->name('delete-post');
 	Route::get('/edit-post/{id}', 'PostController@edit')->name('edit-post');
-	Route::post('/file-upload', function ()
-	{
-		$file = request()->file('myfile');
-		$filename = $file->getClientOriginalName();
-		request()->file('myfile')->storeAs('post-pictures',$filename);
-		return back();
-	})->name('file-upload');
+	Route::post('/file-upload/{folder}/{keepFileName}', 'UtilityDesk@saveFile')->name('file-upload');
 });
 
 Route::get('/{slug}', 'PostController@show')->name('show-post');
