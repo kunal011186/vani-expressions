@@ -3,7 +3,7 @@
 @section('body')
 	<div class="container">
 		<div>
-			@yield('title-bar')
+			<h1>@yield('title-bar')</h1>
 		</div>
 		<div class="row">
 			<div class="col-md-9">

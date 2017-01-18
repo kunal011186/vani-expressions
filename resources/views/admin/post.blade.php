@@ -17,6 +17,9 @@
 @endsection
 
 @section('content')
+<div>
+    <a href="{{route('media')}}" target="_blank"><b>Add Picture</b></a>
+</div>
 <form method="POST" action="{{route('save-post')}}">
     {{ csrf_field() }}
     @if ($postSent)
@@ -26,9 +29,6 @@
     Slug: <input type='text' name='slug' size='35' value='{{($postSent?$post->slug:"")}}'/>
     <br/>
     Title: <input type='text' name='title' size='35' value='{{($postSent?$post->title:"")}}'/><br/>
-    <div>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addPicture">Add Picture</button>
-    </div>
     Content:<br/>
     <textarea rows="20" wrap="virtual" name="content" style="width: 100%">{{($postSent?$post->content:'')}}</textarea><br/>
     Excerpt:<br/>
@@ -39,7 +39,5 @@
     @endif
     <button type="submit" name="action" value="publish">Publish</button>
 </form>
-
-@include('admin.add-media')
 
 @endsection

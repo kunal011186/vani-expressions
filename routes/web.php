@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'], function () {
 	Route::get('/all-posts', 'PostController@index')->name('admin-all-posts');
 	Route::get('/delete-post/{id}', 'PostController@destroy')->name('delete-post');
 	Route::get('/edit-post/{id}', 'PostController@edit')->name('edit-post');
+	Route::get('/media', function () {
+		return view('admin.media');
+	})->name('media');
 	Route::post('/file-upload/{folder}/{keepFileName}', 'UtilityDesk@saveFile')->name('file-upload');
 });
 
