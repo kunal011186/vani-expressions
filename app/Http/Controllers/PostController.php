@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Post;
 
 class PostController extends Controller
@@ -12,9 +13,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-        $posts = Post::all();
-        return view('admin.posts',['posts'=>$posts]);
+        $routeName = Route::currentRouteName();
+        // if (strpos($routeName,'admin')>=0)
+        // {
+            $posts = Post::allPosts();
+            return view('admin.posts',['posts'=>$posts]);
+        // }
     }
 
     /**
@@ -33,10 +37,18 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
         if (array_key_exists('id', $data))
         {
             $post = Post::find($data['id']);
-            $post->updatePost($data);
+            if ($data['action'] == 'save')
+            {
+                $post->updatePost($data);
+            }
+            else
+            {
+                $post->publish($data);
+            }
         }
         else
         {

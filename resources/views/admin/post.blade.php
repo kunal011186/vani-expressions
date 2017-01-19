@@ -33,6 +33,7 @@
     <textarea rows="20" wrap="virtual" name="content" style="width: 100%">{{($postSent?$post->content:'')}}</textarea><br/>
     Excerpt:<br/>
     <textarea rows="3" wrap="virtual" name="excerpt" style="width: 100%">{{($postSent?$post->excerpt:'')}}</textarea><br/>
+    <input type="hidden" name="published" value="{{($postSent?$post->published:0)}}" />
     <button type="submit" name="action" value="save">Save</button>&nbsp;&nbsp;&nbsp;
     @if ($postSent)
         <button type="button" onclick="window.open('{{route('show-post',['slug'=>$post->slug])}}')">Preview</button>&nbsp;&nbsp;&nbsp;

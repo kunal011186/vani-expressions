@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -17,12 +18,17 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * Show the application admin dashboard.
      */
     public function index()
     {
         return view('home');
+    }
+
+    public function welcome()
+    {
+        $posts = Post::publishedPosts();
+        // var_dump($posts);
+        return view('welcome',['posts'=>$posts]);
     }
 }

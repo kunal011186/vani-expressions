@@ -8,6 +8,9 @@
 
 @section('content')
 @foreach($posts as $post)
+    @if($post->published == 0)
+    	<b>Draft: </b>
+    @endif
     {{$post->title}} 
     <a href="{{route('show-post',['slug'=>$post->slug])}}">view</a> 
     <a href="{{route('edit-post',['id'=>$post->id])}}">edit</a> 
