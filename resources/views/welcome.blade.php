@@ -6,7 +6,7 @@
 
 @section('content')
 @foreach($posts as $post)
-    <h2>{{$post->title}}</h2>
+    <a href="{{route('show-post',['slug'=>$post->slug])}}"><h2>{{$post->title}}</h2></a>
     <?php 
 	    $date=date_create($post->postdate);
 		$date = date_format($date,"jS M Y");

@@ -24,6 +24,8 @@ Route::get('/logout', function()
 	Auth::logout();
 });
 
+Route::get('/previous/{id}', 'PostController@previous')->name('previous');
+
 Route::group(['middleware' => 'auth','prefix' => 'admin'], function () {
     Route::get('/', function () {
     	return view('admin.index');

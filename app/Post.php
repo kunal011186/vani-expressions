@@ -66,4 +66,13 @@ class Post extends Model
                     ->get();
         return $posts;
     }
+
+    public static function previous($id)
+    {
+        $post = Post::find($id);
+        $previous = Post::where('postdate','<',$post->postdate)
+                        ->orderBy('postdate','desc')
+                        ->first();
+        return $previous->slug;
+    }
 }

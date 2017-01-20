@@ -105,4 +105,10 @@ class PostController extends Controller
         $post = Post::destroy($id);
         return redirect()->route('admin-all-posts');
     }
+
+    public function previous($id)
+    {
+        $slugOfPrevious = Post::previous($id);
+        return redirect()->route('show-post',['slug'=>$slugOfPrevious]);
+    }
 }
