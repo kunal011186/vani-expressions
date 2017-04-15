@@ -67,6 +67,15 @@ class Post extends Model
         return $posts;
     }
 
+    public static function recentPosts($howMany)
+    {
+        $posts = Post::where('published',1)
+                    ->orderBy('postdate','desc')
+                    ->take($howMany)
+                    ->get();
+        return $posts;
+    }
+
     public static function previous($id)
     {
         $post = Post::find($id);
@@ -75,4 +84,12 @@ class Post extends Model
                         ->first();
         return $previous->slug;
     }
+
+    public static function random()
+    {
+        $post = Post::inRandomOrder()->first();
+        // var_dump($post);
+        return $post;
+    }
+
 }
