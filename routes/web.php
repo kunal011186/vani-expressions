@@ -30,15 +30,19 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'], function () {
     Route::get('/', function () {
     	return view('admin.index');
 	})->name('admin-home');
+	
 	Route::get('/create-post', 'PostController@create')->name('create-post');
 	Route::post('/save-post', 'PostController@store')->name('save-post');
 	Route::get('/all-posts', 'PostController@index')->name('admin-all-posts');
 	Route::get('/delete-post/{id}', 'PostController@destroy')->name('delete-post');
 	Route::get('/edit-post/{id}', 'PostController@edit')->name('edit-post');
+	
 	Route::get('/media', function () {
 		return view('admin.media');
 	})->name('media');
 	Route::post('/file-upload/{folder}/{keepFileName}', 'UtilityDesk@saveFile')->name('file-upload');
+
+	Route::get('/categories', 'CategoryController@index')->name('admin-categories');
 });
 
 Route::get('/{slug}', 'PostController@show')->name('show-post');
